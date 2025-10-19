@@ -63,6 +63,10 @@ public class EmployeeService {
         return employeeRepository.existsById(Id);
     }
 
+     public boolean isExistEmployeeById2(Long Id) {
+        return employeeRepository.existsById(Id);
+    }
+
     public boolean deleteEmployeeById(Long Id) {
         boolean exists = isExistEmployeeById(Id);
         if (!exists) return false;
