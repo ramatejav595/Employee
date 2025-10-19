@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -29,10 +33,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying application...'
-                // You can later add Docker build/push or SCP deployment here
+                echo 'Deploying application...
             }
         }
     }
 }
-
