@@ -10,6 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
+                sh 'chmod +x mvnw'
                 sh './mvnw clean package -DskipTests'
             }
         }
@@ -19,5 +20,19 @@ pipeline {
                 sh './mvnw test'
             }
         }
+
+        stage('Package') {
+            steps {
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                // You can later add Docker build/push or SCP deployment here
+            }
+        }
     }
 }
+
