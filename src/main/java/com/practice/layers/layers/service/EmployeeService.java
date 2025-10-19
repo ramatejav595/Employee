@@ -38,6 +38,14 @@ public class EmployeeService {
                 .collect(Collectors.toList());
     }
 
+    public List<EmployeeDTO> getAllEmployees2() {
+        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
+        return employeeEntities
+                .stream()
+                .map(employeeEntity -> modelMapper.map(employeeEntity, EmployeeDTO.class))
+                .collect(Collectors.toList());
+    }
+
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         EmployeeEntity toSaveEntity = modelMapper.map(employeeDTO, EmployeeEntity.class);
         EmployeeEntity employeeEntity = employeeRepository.save(toSaveEntity);
